@@ -255,6 +255,8 @@ static int tcp_seq_show(struct seq_file *seq, void *v) {
 
 			seq_printf(seq, ",TCP_DEFER_ACCEPT=%d", defer);
 
+			seq_printf(seq, ",IP_TRANSPARENT=%d", tcp_sk(sk)->inet_conn.icsk_inet.transparent);
+
 		}
 		seq_printf(seq, "\n");
 	}
@@ -350,6 +352,8 @@ static int udp_seq_show(struct seq_file *seq, void *v) {
 		sock_common_options_show(seq, sk);
 
 		seq_printf(seq, ",SO_BROADCAST=%d", sock_flag(sk, SOCK_BROADCAST));
+
+		seq_printf(seq, ",IP_TRANSPARENT=%d", udp_sk(sk)->inet.transparent);
 
 		seq_printf(seq, "\n");
 	}
